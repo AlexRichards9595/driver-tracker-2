@@ -11,6 +11,15 @@ describe('Driver', function () {
         expect(driver.trips.length).toEqual(0);
         expect(driver.totalMiles).toEqual(0);
     });
+
+    test('getTotalAverage speed should get the average speed from the total duration and miles', function () {
+        const driver = new Driver("name");
+        driver.addTrip(new Trip("name", "7:45", "8:45", "40"));
+        expect(driver.totalAverageSpeed).toEqual(40);
+        driver.addTrip(new Trip("name", "7:45", "10:45", "20"));
+
+        expect(driver.totalAverageSpeed).toEqual(15);
+    });
     describe('addTrip', function () {
         let driver;
         let trip1;

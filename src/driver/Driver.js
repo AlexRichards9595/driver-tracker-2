@@ -4,6 +4,7 @@ class Driver {
         this.trips = [];
         this.totalMiles = 0;
         this.totalDuration = 0;
+        this.totalAverageSpeed = 0;
     }
 
     addTrip (trip) {
@@ -11,7 +12,12 @@ class Driver {
             this.trips.push(trip);
             this.totalMiles += trip.miles;
             this.totalDuration += trip.duration;
+            this.totalAverageSpeed = this.getTotalAverageSpeed();
         }
+    }
+
+    getTotalAverageSpeed () {
+        return this.totalMiles / this.totalDuration;
     }
 }
 
