@@ -1,0 +1,24 @@
+{
+  "name": "driver-tracker-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "babel src -d lib",
+    "test": "jest --watchAll",
+    "readFile": "node src/file-reader/FileReader.js input.txt"
+  },
+  "author": "Alex Richards",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^26.2.2"
+  },
+  "dependencies": {
+    "@jest/globals": "latest"
+  }
+}
