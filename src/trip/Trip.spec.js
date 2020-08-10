@@ -10,5 +10,6 @@ describe('Trip', function () {
         expect(trip.name).toBe(name);
         expect(trip.miles).toBe(17.3);
         expect(trip.duration).toBe(.5);
+        expect(trip.averageSpeed).toBe(34.6);
     });
 });

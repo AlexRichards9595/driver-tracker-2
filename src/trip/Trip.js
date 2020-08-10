@@ -20,6 +20,10 @@ class Trip  {
 
         return ((parsedEndTime.getTime() - parsedStartTime.getTime()) / MS_IN_HOUR);
     }
+
+    calculateAverageSpeed () {
+        return this.miles / this.duration;
+    }
 }
 
 module.exports = { Trip };
