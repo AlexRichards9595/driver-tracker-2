@@ -5,6 +5,7 @@ class Trip  {
         this.endTime = endTime;
         this.miles = parseFloat(miles);
         this.duration = this.getDuration();
+        this.averageSpeed = this.calculateAverageSpeed();
     }
 
     getDuration () {
