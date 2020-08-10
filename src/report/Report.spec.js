@@ -35,45 +35,57 @@ describe('Report', function () {
         expect(report.getDriverByName(name2)).toBe(driver2);
     });
 
-    test('sortDriver should sort drivers from most miles driven to least ', function () {
-        const driver1 = new Driver("driver 1");
-        const driver2 = new Driver("driver 2");
-        const driver3 = new Driver("driver 3");
+    describe('data management', function () {
+        let driver1;
+        let driver2;
+        let driver3;
 
-        driver1.addTrip(new Trip("driver 1", "7:45", '8:45', 10));
-        driver2.addTrip(new Trip("driver 2", "7:45", '8:45', 20));
-        driver3.addTrip(new Trip("driver 3", "7:45", '8:45', 30));
+        beforeEach(() => {
+            driver1 = new Driver("Lauren");
+            driver2 = new Driver("Dan");
+            driver3 = new Driver("Kumi");
 
-        report.addDriver(driver1);
-        report.addDriver(driver2);
-        report.addDriver(driver3);
+            driver2.addTrip(new Trip('Dan', '07:15', '07:45', '17.3'));
+            driver2.addTrip(new Trip('Dan', '06:12', '06:32', '21.8'));
+            driver1.addTrip(new Trip('Lauren', '12:01', '13:16', '42.00'));
 
-        expect(report.drivers[0]).toBe(driver1);
-        expect(report.drivers[1]).toBe(driver2);
-        expect(report.drivers[2]).toBe(driver3);
+            report.addDriver(driver3);
+            report.addDriver(driver2);
+            report.addDriver(driver1);
+        });
 
-        report.sort();
+        test('sort should sort drivers from most miles driven to least ', function () {
+            expect(report.drivers[0]).toBe(driver3);
+            expect(report.drivers[1]).toBe(driver2);
+            expect(report.drivers[2]).toBe(driver1);
 
-        expect(report.drivers[0]).toBe(driver3);
-        expect(report.drivers[1]).toBe(driver2);
-        expect(report.drivers[2]).toBe(driver1);
-    });
+            report.sort();
 
-    test('formatData should round miles, and average speeds to nearest integer', function () {
-        const driver1 = new Driver("driver 1");
-        const driver2 = new Driver("driver 2");
+            expect(report.drivers[0]).toBe(driver1);
+            expect(report.drivers[1]).toBe(driver2);
+            expect(report.drivers[2]).toBe(driver3);
+        });
 
-        driver1.addTrip(new Trip("driver 1", "7:45", '8:45', 10.6));
-        driver2.addTrip(new Trip("driver 2", "7:45", '9:45', 20.3));
+        test('formatData should round miles, and average speeds to nearest integer', function () {
+            report.formatData();
 
-        report.addDriver(driver1);
-        report.addDriver(driver2);
+            expect(driver1.totalMiles).toEqual(42);
+            expect(driver1.totalAverageSpeed).toEqual(34);
+            expect(driver2.totalMiles).toEqual(39);
+            expect(driver2.totalAverageSpeed).toEqual(47);
+            expect(driver3.totalMiles).toEqual(0);
+            expect(driver3.totalAverageSpeed).toEqual(0);
+        });
 
-        report.formatData();
+        test('buildReport should build a report body from its data', function () {
+            const expectedReport =
+                "Lauren: 42 miles @ 34 mph\nDan: 39 miles @ 47 mph\nKumi: 0 miles\n";
 
-        expect(driver1.totalMiles).toEqual(11);
-        expect(driver1.totalAverageSpeed).toEqual(11);
-        expect(driver2.totalMiles).toEqual(20);
-        expect(driver2.totalAverageSpeed).toEqual(10);
-    });
+            report.sort();
+            report.formatData();
+            const actualReport = report.buildReport();
+
+            expect(actualReport).toBe(expectedReport);
+        });
+    })
 });
