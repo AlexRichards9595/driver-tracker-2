@@ -7,7 +7,7 @@
   "scripts": {
     "build": "babel src -d lib",
     "test": "jest --watchAll",
-    "readFile": "node src/file-reader/FileReader.js input.txt"
+    "readFile": "node src/app/App.js input.txt"
   },
   "author": "Alex Richards",
   "license": "ISC",

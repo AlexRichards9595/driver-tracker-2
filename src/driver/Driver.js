@@ -21,4 +21,4 @@ class Driver {
     }
 }
 
-module.exports = { Driver };
+export default Driver;

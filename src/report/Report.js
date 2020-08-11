@@ -25,6 +25,8 @@ class Report {
     }
 
     buildReport() {
+        this.sort();
+        this.formatData();
         let report = ``;
 
         for (let driver of this.drivers) {
@@ -38,4 +40,4 @@ class Report {
     }
 }
 
-module.exports = { Report };
+export default Report;
