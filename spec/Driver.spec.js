@@ -1,6 +1,6 @@
-import Driver from './Driver'
+import Driver from '../src/Driver'
 import {beforeEach, describe, expect} from "@jest/globals";
-import Trip from "../trip/Trip";
+import Trip from "../src/Trip";
 
 describe('Driver', function () {
     test('should construct with name and an empty trips array', function () {

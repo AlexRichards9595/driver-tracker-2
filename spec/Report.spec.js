@@ -1,6 +1,6 @@
-import Report from './Report';
-import Driver from '../driver/Driver'
-import Trip from '../trip/Trip'
+import Report from '../src/Report';
+import Driver from '../src/Driver'
+import Trip from '../src/Trip'
 import {beforeEach, describe, expect, test} from "@jest/globals";
 
 describe('Report', function () {

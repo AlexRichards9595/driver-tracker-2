@@ -1,4 +1,4 @@
-import Trip from "./Trip";
+import Trip from "../src/Trip";
 import {describe, expect} from "@jest/globals";
 
 describe('Trip', function () {

@@ -1,7 +1,7 @@
 import {beforeEach, describe, expect, test} from "@jest/globals";
-import {parseFile, readFile, writeFile} from './FileHandler';
-import Driver from "../driver/Driver";
-import Trip from "../trip/Trip";
+import {parseLines, getLinesFromFile, writeFile} from '../src/FileHandler';
+import Driver from "../src/Driver";
+import Trip from "../src/Trip";
 import fs from 'fs';
 
 jest.mock('fs');
@@ -19,7 +19,7 @@ describe('FileHandler', function () {
                 "Trip Dan 06:12 06:32 21.8"
             ];
 
-            const returnValue = parseFile(lines);
+            const returnValue = parseLines(lines);
 
             expect(returnValue.drivers.length).toEqual(3);
             expect(returnValue.trips.length).toEqual(2);

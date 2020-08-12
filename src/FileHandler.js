@@ -1,20 +1,17 @@
 import fs from 'fs';
-import Driver from '../driver/Driver.js';
-import Trip from "../trip/Trip.js";
+import Driver from './Driver.js';
+import Trip from "./Trip.js";
 
-const readFile = () => {
-    if (!process.argv[2]) {
+const getLinesFromFile = () => {
+    if (!process.argv[3]) {
         console.log('Please specify a file to read');
         process.exit();
     }
 
-    const lines = fs.readFileSync(process.argv[2], 'utf-8')
-        .split('\n');
-
-    return parseFile(lines);
+    return  fs.readFileSync(process.argv[3], 'utf-8').split('\n');
 };
 
-function parseFile(lines) {
+function parseLines(lines) {
     let data = {
         drivers: [],
         trips: []
@@ -36,4 +33,4 @@ const writeFile = (report) => {
     fs.writeFile('output.txt', report, () => console.log("Report was written successfully"));
 };
 
-export { readFile, writeFile, parseFile };
+export { getLinesFromFile, writeFile, parseLines };
