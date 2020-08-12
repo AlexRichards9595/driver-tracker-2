@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "babel src -d lib",
-    "test": "jest --watchAll",
-    "readFile": "node src/app/App.js input.txt"
+    "test": "npx jest --verbose",
+    "app": "node src/Start.js"
   },
   "author": "Alex Richards",
   "license": "ISC",

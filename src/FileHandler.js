@@ -3,12 +3,12 @@ import Driver from './Driver.js';
 import Trip from "./Trip.js";
 
 const getLinesFromFile = () => {
-    if (!process.argv[3]) {
+    if (!process.argv[2]) {
         console.log('Please specify a file to read');
         process.exit();
     }
 
-    return  fs.readFileSync(process.argv[3], 'utf-8').split('\n');
+    return  fs.readFileSync(process.argv[2], 'utf-8').split('\n');
 };
 
 function parseLines(lines) {
