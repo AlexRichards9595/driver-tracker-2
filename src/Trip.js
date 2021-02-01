@@ -10,16 +10,16 @@ class Trip  {
 
     getDuration () {
         const MS_IN_HOUR = 3600000;
-
-        const splitStartTime = this.startTime.split(":");
-        let parsedStartTime = new Date();
-        parsedStartTime.setHours(splitStartTime[0], splitStartTime[1], 0, 0);
-
-        const splitEndTime = this.endTime.split(":");
-        let parsedEndTime = new Date();
-        parsedEndTime.setHours(splitEndTime[0], splitEndTime[1], 0, 0);
-
+        let parsedStartTime = this.getTimeFromString(this.startTime);
+        let parsedEndTime = this.getTimeFromString(this.endTime);
         return ((parsedEndTime.getTime() - parsedStartTime.getTime()) / MS_IN_HOUR);
+    }
+
+    getTimeFromString(time) {
+        const splitTime = time.split(":");
+        let parsedTime = new Date();
+        parsedTime.setHours(splitTime[0], splitTime[1], 0, 0);
+        return parsedTime;
     }
 
     calculateAverageSpeed () {
